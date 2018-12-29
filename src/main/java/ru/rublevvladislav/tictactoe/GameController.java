@@ -31,7 +31,6 @@ public class GameController {
 
     @RequestMapping
     public String index() {
-
         return "index";
     }
 
@@ -52,20 +51,15 @@ public class GameController {
 
     @RequestMapping(value = "/game/new", method = GET)
     public String newGame(@RequestParam String gameMode, HttpServletRequest request) {
-
     game = new BigField();
-
     game.setGameMode(Integer.parseInt(gameMode));
-
     setGameIntoSession(request, game);
-
     return "redirect:/game";
   }
 
     @RequestMapping(value = "/game/move", method = GET)
     public String play(@RequestParam String pos, HttpServletRequest request) {
     game = getGameFromSession(request);
-
     if (pos == null) {
       game.move(100);
     } else {
@@ -87,7 +81,6 @@ public class GameController {
         gameDAO.save(gameEnt);
       }
     }
-
     return "redirect:/game";
   }
 
@@ -100,13 +93,11 @@ public class GameController {
 
   private BigField getGameFromSession(HttpServletRequest request) {
     HttpSession session = request.getSession();
-
     return (BigField) session.getAttribute("game");
   }
 
   private void setGameIntoSession(HttpServletRequest request, BigField game) {
     HttpSession session = request.getSession();
-
     session.setAttribute("game", game);
   }
 }
