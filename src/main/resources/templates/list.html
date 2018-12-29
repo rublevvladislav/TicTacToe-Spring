@@ -27,18 +27,18 @@
                     <a class="page-link" 
                        href="#"
                        th:if="*{hasPrevious()}" 
-                       th:href="@{/list(page.page=1, page.size=*{size})}")>
+                       th:href="@{/list(pg=0)}")>
                         Previous
                     </a>
                 </li>
                 <li class="page-item"
                     th:if="*{totalPages} > 1"
-                    th:each="num : ${#numbers.sequence(1, games.totalPages)}"
-                    th:classappend="${num} == *{number} + 1 ? ' active'">
+                    th:each="num : ${#numbers.sequence(0, games.totalPages - 1)}"
+                    th:classappend="${num} == *{number} ? ' active'">
                     <a class="page-link" 
                        href="#"
-                       th:href="@{/list(page.page=${num}, page.size=*{size})}"
-                       th:text="${num}">1</a>
+                       th:href="@{/list(pg=${num})}"
+                       th:text="${num + 1}">1</a>
                 </li>
                 <li class="page-item"
                     th:classappend="not *{hasNext()} ? ' disabled'">
@@ -47,7 +47,7 @@
                     <a class="page-link" 
                        href="#"
                        th:if="*{hasNext()}" 
-                       th:href="@{/list(page.page=*{totalPages}, page.size=*{size})}")>
+                       th:href="@{/list(pg=*{totalPages} - 1)}")>
                         Next
                     </a>
                 </li>

@@ -85,8 +85,8 @@ public class GameController {
   }
 
   @RequestMapping(value = "/list")
-  public String list(Model model, @PageableDefault(value = 5) Pageable pageable){
-    Page<Game> page = gameDAO.findAllByOrderByDateDesc(pageable);
+  public String list(@RequestParam(defaultValue="0", required=false) String pg, Model model, @PageableDefault(value = 5) Pageable pageable){
+    Page<Game> page = gameDAO.findAllByOrderByDateDesc(new PageRequest(Integer.parseInt(pg), 5));
     model.addAttribute("games", page);
     return "list";
   }

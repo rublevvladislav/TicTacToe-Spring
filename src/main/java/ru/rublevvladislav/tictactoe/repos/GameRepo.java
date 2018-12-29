@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Date;
 
 public interface GameRepo extends PagingAndSortingRepository<Game, String> {
-
     Page<Game> findByWinnerLike(String winner, Pageable pageable);
     Page<Game> findAllByOrderByDateDesc(Pageable pageable);
 }
