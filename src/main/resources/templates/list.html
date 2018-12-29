@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<title>History</title>
+</head>
+
+        <div>
+            <dl th:each="game : ${games}">
+                <dt 
+                   th:text="${game.date}"></dt>
+                <dd 
+                   th:text="${game.winner}"></dd>
+                <dd 
+                   th:text="${game.gameMode}"></dd>
+            </dl>
+        </div>
+
+        <nav aria-label="Page navigation" th:object="${games}">
+            <ul class="pagination">
+                <li class="page-item"
+                    th:classappend="not *{hasPrevious()} ? ' disabled'">
+                    <span class="page-link"
+                          th:if="not *{hasPrevious()}">Previous</span>
+                    <a class="page-link" 
+                       href="#"
+                       th:if="*{hasPrevious()}" 
+                       th:href="@{/list(page.page=1, page.size=*{size})}")>
+                        Previous
+                    </a>
+                </li>
+                <li class="page-item"
+                    th:if="*{totalPages} > 1"
+                    th:each="num : ${#numbers.sequence(1, games.totalPages)}"
+                    th:classappend="${num} == *{number} + 1 ? ' active'">
+                    <a class="page-link" 
+                       href="#"
+                       th:href="@{/list(page.page=${num}, page.size=*{size})}"
+                       th:text="${num}">1</a>
+                </li>
+                <li class="page-item"
+                    th:classappend="not *{hasNext()} ? ' disabled'">
+                    <span class="page-link"
+                          th:if="not *{hasNext()}">Next</span>
+                    <a class="page-link" 
+                       href="#"
+                       th:if="*{hasNext()}" 
+                       th:href="@{/list(page.page=*{totalPages}, page.size=*{size})}")>
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+<a href="/game" class="btn btn-secondary" role="button" th:href="@{/game}">Return to Game!</a>
+<a href="/game/new" class="btn btn-secondary" role="button" th:href="@{/game/new(gameMode=0)}">Start New Game vs Computer!</a>
+<a href="/game/new" class="btn btn-secondary" role="button" th:href="@{/game/new(gameMode=1)}">Start New Co-op Game!</a>

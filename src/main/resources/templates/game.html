@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<style>
+.noLink {
+  pointer-events: none;
+}
+.borderTable{
+  border: 1px solid #FF0000;
+}
+</style>
+<title>Game Board</title>
+</head>
+
+<body>
+
+<h2>Tic Tac Toe</h2>
+
+<h3 th:if="${check} == true " th:text="${winner}"></h3>
+
+<table>
+<tr>
+<th:block th:each="j : ${#numbers.sequence( 0, 2)}">
+<td style='padding: 3px;'>
+<table th:classappend="${whichField} != ${j} ? 'noLink' : 'borderTable'" border="1">
+    <tr>
+   <th:block th:each="i : ${#numbers.sequence( 0, 2)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+    <tr>
+   <th:block th:each="i : ${#numbers.sequence( 3, 5)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+    <tr style="padding-top: 4.5rem; padding-bottom: 3rem;">
+   <th:block th:each="i : ${#numbers.sequence( 6, 8)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+</table>
+</td>
+</th:block>
+</tr>
+<tr>
+<th:block th:each="j : ${#numbers.sequence( 3, 5)}">
+<td style='padding: 3px;'>
+<table th:classappend="${whichField} != ${j} ? 'noLink' : 'borderTable'" border="1">
+    <tr>
+   <th:block th:each="i : ${#numbers.sequence( 0, 2)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+    <tr>
+   <th:block th:each="i : ${#numbers.sequence( 3, 5)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+    <tr style="padding-top: 4.5rem; padding-bottom: 3rem;">
+   <th:block th:each="i : ${#numbers.sequence( 6, 8)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+</table>
+</td>
+</th:block>
+</tr>
+<tr>
+<th:block th:each="j : ${#numbers.sequence( 6, 8)}">
+<td style='padding: 3px;'>
+<table th:classappend="${whichField} != ${j} ? 'noLink' : 'borderTable'" border="1">
+    <tr>
+   <th:block th:each="i : ${#numbers.sequence( 0, 2)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+    <tr>
+   <th:block th:each="i : ${#numbers.sequence( 3, 5)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+    <tr style="padding-top: 4.5rem; padding-bottom: 3rem;">
+   <th:block th:each="i : ${#numbers.sequence( 6, 8)}">
+         <td width="50"><a th:classappend="${check} == true ? 'noLink'" th:href=@{/game/move(pos=${i})} style='text-decoration: none;'><div align="center" th:text=" ${game[{j}][{i}]} ">...</div></a></td>
+   </th:block>
+    </tr>
+</table>
+</td>
+</th:block>
+</tr>
+</table>
+
+<a href="/game/new" class="btn btn-secondary" role="button" th:href="@{/game/new(gameMode=${gameMode})}">Restart!</a>
+<a th:if="${gameMode} == 1" href="/game/new" class="btn btn-secondary" role="button" th:href="@{/game/new(gameMode=0)}">Change game mode!</a>
+<a th:if="${gameMode} == 0" href="/game/new" class="btn btn-secondary" role="button" th:href="@{/game/new(gameMode=1)}">Change game mode!</a>
+<a href="/list" class="btn btn-secondary" role="button" th:href="@{/list}">History of Games!</a>
+
+</body>
+</html>
