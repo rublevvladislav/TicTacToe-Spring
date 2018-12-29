@@ -1,11 +1,11 @@
-package ru.rublevvladislav.tictactoe;
+package ru.rublevvladislav.tictactoe.GameLogic;
 
 import org.slf4j.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BigField extends SmallField{
+public class BigField extends SmallField {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
     private SmallField[] board;
@@ -17,7 +17,7 @@ public class BigField extends SmallField{
     /**
      * Construct the big field.
      */
-    BigField(){
+    public BigField(){
         board = new SmallField[FIELD_SIZE*FIELD_SIZE];
         initialize();
     }

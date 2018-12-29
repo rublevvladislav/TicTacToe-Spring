@@ -1,5 +1,6 @@
 package ru.rublevvladislav.tictactoe;
 
+import ru.rublevvladislav.tictactoe.GameLogic.BigField;
 import ru.rublevvladislav.tictactoe.domain.Game;
 import ru.rublevvladislav.tictactoe.repos.GameRepo;
 import ru.rublevvladislav.tictactoe.ArtificialIntelligence.Random;

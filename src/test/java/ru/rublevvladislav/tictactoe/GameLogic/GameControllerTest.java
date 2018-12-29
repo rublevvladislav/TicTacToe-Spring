@@ -1,6 +1,4 @@
-package ru.rublevvladislav.tictactoe;
-
-import ru.rublevvladislav.tictactoe.SmallField;
+package ru.rublevvladislav.tictactoe.GameLogic;
 
 import org.junit.Test;
 import org.junit.Before;

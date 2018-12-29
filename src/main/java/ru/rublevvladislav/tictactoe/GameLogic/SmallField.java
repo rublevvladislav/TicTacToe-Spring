@@ -1,4 +1,4 @@
-package ru.rublevvladislav.tictactoe;
+package ru.rublevvladislav.tictactoe.GameLogic;
 
 import org.slf4j.*;
 
@@ -163,7 +163,7 @@ public class SmallField {
      * Check to see if the game is over
      * @return true if the game is over
      */
-    boolean isGameOver(){
+    public boolean isGameOver(){
         return gameOver;
     }
 
@@ -183,7 +183,7 @@ public class SmallField {
         return winner;
     }
 
-    String whoWinner(){
+    public String whoWinner(){
         if (winner==State.X){
             return "X won!";
         }

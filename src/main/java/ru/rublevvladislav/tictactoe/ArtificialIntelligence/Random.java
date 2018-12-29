@@ -1,6 +1,6 @@
 package ru.rublevvladislav.tictactoe.ArtificialIntelligence;
 
-import ru.rublevvladislav.tictactoe.BigField;
+import ru.rublevvladislav.tictactoe.GameLogic.BigField;
 
 public class Random {
     public static void PlayMove(BigField field){
